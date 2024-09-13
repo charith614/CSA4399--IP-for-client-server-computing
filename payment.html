@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment and Billing</title>
+    <style>
+        /* General styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('charith1.jpg'); /* Replace with your image path */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: rgba(30, 32, 34, 0.8); /* Adding slight transparency to blend with the background */
+            padding: 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 15px;
+        }
+
+        nav ul li a {
+            color: #fffffff3;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: #ffa500;
+        }
+
+        .payment-section {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #ffffff85;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .payment-section h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+        }
+
+        #selected-items {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        #selected-items h2 {
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        #selected-items p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        label {
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="month"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        button[type="submit"] {
+            background-color: #28a745;
+            color: #fff;
+            padding: 12px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        #payment-success {
+            text-align: center;
+            color: #28a745;
+        }
+
+        #payment-success h2 {
+            font-size: 2rem;
+        }
+
+        #card-payment,
+        #phonepe-payment,
+        #googlepay-payment,
+        #cod-payment {
+            display: none;
+        }
+
+        .payment-history {
+            margin-top: 30px;
+        }
+
+        .payment-history h2 {
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .payment-history ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .payment-history li {
+            background-color: #f7f7f7;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .delete-button {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .delete-button:hover {
+            background-color: #c82333;
+        }
+
+        /* Back button styling */
+        .back-button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+            display: block;
+            margin: 0 auto 20px;
+            width: 150px;
+            font-size: 1rem;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Media queries */
+        @media (max-width: 768px) {
+            .payment-section {
+                padding: 20px;
+                margin: 20px;
+            }
+
+            .payment-section h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="user details.html">User Details</a></li>
+                <li><a href="membership.html">Membership</a></li>
+                <li><a href="classes.html">Classes</a></li>
+                <li><a href="trainers.html">Trainers</a></li>
+                <li><a href="payment.html">Payment</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="logout.html">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="payment-section">
+        <button class="back-button" id="back-button">Back</button>
+        <h1>Manage Your Payments</h1>
+
+        <!-- Section to display selected classes and membership details -->
+        <div id="selected-items">
+            <h2>Selected Items</h2>
+            <p id="selected-classes">Selected Classes: </p>
+            <p id="selected-membership">Selected Membership: </p>
+            <p id="total-amount">Total Amount: </p>
+        </div>
+
+        <!-- Payment Method Form -->
+        <form id="payment-form" action="#" method="post">
+            <label for="payment-method">Select Payment Method:</label>
+            <select id="payment-method" name="payment-method">
+                <option value="card">Credit/Debit Card</option>
+                <option value="phonepe">PhonePe</option>
+                <option value="googlepay">Google Pay</option>
+                <option value="cod">Cash on Delivery (COD)</option>
+            </select>
+
+            <!-- Card Payment Section -->
+            <div id="card-payment">
+                <label for="card-number">Card Number:</label>
+                <input type="text" id="card-number" name="card-number" placeholder="Enter your card number" required>
+
+                <label for="expiry">Expiry Date:</label>
+                <input type="month" id="expiry" name="expiry" required>
+
+                <label for="cvv">CVV:</label>
+                <input type="password" id="cvv" name="cvv" placeholder="Enter CVV" required>
+            </div>
+
+            <!-- PhonePe Payment Section -->
+            <div id="phonepe-payment">
+                <p>Please scan the QR code with your PhonePe app to make the payment.</p>
+                <img src="phonepe-qr.png" alt="PhonePe QR Code">
+            </div>
+
+            <!-- Google Pay Payment Section -->
+            <div id="googlepay-payment">
+                <p>Please scan the QR code with your Google Pay app to make the payment.</p>
+                <img src="googlepay-qr.png" alt="Google Pay QR Code">
+            </div>
+
+            <!-- COD Payment Section -->
+            <div id="cod-payment">
+                <p>You have chosen Cash on Delivery. Please have the exact amount ready at the time of delivery.</p>
+            </div>
+
+            <button type="submit">Make Payment</button>
+        </form>
+
+        <!-- Payment Success Message -->
+        <div id="payment-success" style="display: none;">
+            <h2>Payment Successful!</h2>
+            <p>Thank you for your payment. Your transaction was successful.</p>
+        </div>
+
+        <!-- Payment History Section -->
+        <div class="payment-history">
+            <h2>Payment History</h2>
+            <ul id="payment-history-list">
+                <!-- Payment history items will be inserted here dynamically -->
+            </ul>
+        </div>
+    </section>
+
+    <script>
+        // Retrieve data from localStorage
+        const selectedClasses = JSON.parse(localStorage.getItem('selectedClasses')) || [];
+        const classPrices = JSON.parse(localStorage.getItem('classPrices')) || {};
+        const selectedMembership = localStorage.getItem('selectedMembership') || '';
+        const membershipPrice = parseFloat(localStorage.getItem('membershipPrice')) || 0;
+
+        // Calculate total amount
+        let totalAmount = 0;
+        selectedClasses.forEach(cls => {
+            totalAmount += parseFloat(classPrices[cls]) || 0;
+        });
+        totalAmount += membershipPrice;
+
+        // Display selected items and total amount
+        document.getElementById('selected-classes').textContent = `Selected Classes: ${selectedClasses.join(', ')}`;
+        document.getElementById('selected-membership').textContent = `Selected Membership: ${selectedMembership}`;
+        document.getElementById('total-amount').textContent = `Total Amount: $${totalAmount.toFixed(2)}`;
+
+        // Handle payment method selection
+        const paymentMethodSelect = document.getElementById('payment-method');
+        const cardPayment = document.getElementById('card-payment');
+        const phonepePayment = document.getElementById('phonepe-payment');
+        const googlepayPayment = document.getElementById('googlepay-payment');
+        const codPayment = document.getElementById('cod-payment');
+        const paymentForm = document.getElementById('payment-form');
+        const paymentSuccess = document.getElementById('payment-success');
+        const paymentHistoryList = document.getElementById('payment-history-list');
+
+        // Hide all payment options initially
+        cardPayment.style.display = 'none';
+        phonepePayment.style.display = 'none';
+        googlepayPayment.style.display = 'none';
+        codPayment.style.display = 'none';
+
+        // Show the selected payment option when user changes the method
+        paymentMethodSelect.addEventListener('change', function() {
+            const selectedMethod = paymentMethodSelect.value;
+
+            // Hide all sections
+            cardPayment.style.display = 'none';
+            phonepePayment.style.display = 'none';
+            googlepayPayment.style.display = 'none';
+            codPayment.style.display = 'none';
+
+            // Show the relevant section based on the selected payment method
+            if (selectedMethod === 'card') {
+                cardPayment.style.display = 'block';
+            } else if (selectedMethod === 'phonepe') {
+                phonepePayment.style.display = 'block';
+            } else if (selectedMethod === 'googlepay') {
+                googlepayPayment.style.display = 'block';
+            } else if (selectedMethod === 'cod') {
+                codPayment.style.display = 'block';
+            }
+        });
+
+        // Handle form submission and show payment success message
+        paymentForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent actual form submission
+
+            // Get selected payment method
+            const paymentMethod = paymentMethodSelect.value;
+            let paymentDetails = '';
+
+            if (paymentMethod === 'card') {
+                const cardNumber = document.getElementById('card-number').value;
+                const expiry = document.getElementById('expiry').value;
+                const cvv = document.getElementById('cvv').value;
+                paymentDetails = `Credit Card: ${cardNumber} (Expiry: ${expiry}, CVV: ${cvv})`;
+            } else if (paymentMethod === 'phonepe') {
+                paymentDetails = 'PhonePe';
+            } else if (paymentMethod === 'googlepay') {
+                paymentDetails = 'Google Pay';
+            } else if (paymentMethod === 'cod') {
+                paymentDetails = 'Cash on Delivery';
+            }
+
+            // Add the new payment to the payment history
+            const paymentDate = new Date().toISOString().split('T')[0]; // Current date in YYYY-MM-DD format
+            const paymentItem = document.createElement('li');
+            paymentItem.innerHTML = `Date: ${paymentDate}, Amount: $${totalAmount.toFixed(2)}, Method: ${paymentMethod} (${paymentDetails}) <button class="delete-button">Delete</button>`;
+            paymentHistoryList.appendChild(paymentItem);
+
+            // Save payment history to localStorage
+            const existingHistory = JSON.parse(localStorage.getItem('paymentHistory')) || [];
+            existingHistory.push({
+                date: paymentDate,
+                amount: totalAmount.toFixed(2),
+                method: paymentMethod,
+                details: paymentDetails
+            });
+            localStorage.setItem('paymentHistory', JSON.stringify(existingHistory));
+
+            // Show payment success message
+            paymentForm.style.display = 'none'; // Hide the form
+            paymentSuccess.style.display = 'block'; // Show success message
+
+            // Redirect to home page after 3 seconds
+            setTimeout(function() {
+                window.location.href = 'home.html'; // Redirect to home page
+            }, 3000); // 3000 milliseconds = 3 seconds
+        });
+
+        // Load and display payment history on page load
+        window.addEventListener('load', function() {
+            const paymentHistory = JSON.parse(localStorage.getItem('paymentHistory')) || [];
+            paymentHistoryList.innerHTML = ''; // Clear existing history
+            paymentHistory.forEach((payment, index) => {
+                const paymentItem = document.createElement('li');
+                paymentItem.innerHTML = `Date: ${payment.date}, Amount: $${payment.amount}, Method: ${payment.method} (${payment.details}) <button class="delete-button" data-index="${index}">Delete</button>`;
+                paymentHistoryList.appendChild(paymentItem);
+            });
+        });
+
+        // Handle payment history deletion
+        paymentHistoryList.addEventListener('click', function(event) {
+            if (event.target.classList.contains('delete-button')) {
+                const index = event.target.getAttribute('data-index');
+                const paymentHistory = JSON.parse(localStorage.getItem('paymentHistory')) || [];
+                paymentHistory.splice(index, 1); // Remove item from array
+                localStorage.setItem('paymentHistory', JSON.stringify(paymentHistory));
+
+                // Refresh the payment history list
+                const paymentItems = document.querySelectorAll('#payment-history-list li');
+                paymentItems.forEach(item => item.remove());
+                window.dispatchEvent(new Event('load')); // Trigger load event to reload history
+            }
+        });
+
+        // Handle back button click
+        document.getElementById('back-button').addEventListener('click', function() {
+            window.history.back(); // Navigate to the previous page
+        });
+    </script>
+</body>
+</html>

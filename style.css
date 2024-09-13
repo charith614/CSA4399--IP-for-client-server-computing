@@ -1,0 +1,310 @@
+/* General Page Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+header {
+    background-color: #ff5733;
+    padding: 1rem;
+    text-align: center;
+}
+
+header nav ul {
+    list-style: none;
+}
+
+header nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+header nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Hero Section (Home Page) */
+.hero {
+    background-image: url('ch.jpg'); /* Add your background image here */
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 5rem 2rem;
+    min-height: 100vh;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.cta-btn {
+    background-color: #333;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    text-transform: uppercase;
+    font-size: 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.cta-btn:hover {
+    background-color: #c44d26;
+}
+
+/* Membership Plans */
+.membership-plans {
+    background-image: url('chari.jpg'); /* Background for Membership Plans */
+    background-size: cover;
+    background-position: center;
+    color: rgb(24, 1, 1);
+    text-align: center;
+    padding: 5rem 2rem;
+    min-height: 100vh;
+}
+
+.membership-plans h1 {
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+}
+
+.plan {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    padding: 2rem;
+    margin: 1rem;
+    display: inline-block;
+    width: 250px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    vertical-align: top;
+}
+
+.plan h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.plan p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.plan-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.plan-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Class Schedule */
+.class-schedule {
+    background-image: url('n.jpg'); /* Background for Class Schedule */
+    background-size: cover;
+    background-position: center;
+    color: rgba(255, 255, 255, 0.93);
+    text-align: center;
+    padding: 5rem 2rem;
+    min-height: 100vh;
+}
+
+.class-item {
+    background-color:#333; /* Semi-transparent white background */
+    margin: 1rem;
+    padding: 2rem;
+    border-radius: 10px;
+    display: inline-block;
+    width: 250px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.class-item h2 {
+    font-size: 1.5rem;
+}
+
+.class-item p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.book-btn {
+    display: inline-block;
+    background-color: #ff5733;
+    color: white;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.book-btn:hover {
+    background-color: #c44d26;
+}
+
+/* Trainer Profiles */
+.trainer-list {
+    background-image: url('c.jpg'); /* Background for Trainers */
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 5rem 2rem;
+    min-height: 100vh;
+}
+
+.trainer {
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+    margin: 1rem;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    width: 250px;
+    vertical-align: top;
+}
+
+.trainer h2 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.trainer p {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+/* Contact Us Form */
+.contact-us {
+    background-image: url('charit.jpg'); /* Background for Contact Us */
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 5rem 2rem;
+    min-height: 100vh;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    text-align: left;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form input[type="tel"],
+form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 1.5rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+form textarea {
+    height: 150px;
+}
+
+form input:focus,
+form textarea:focus {
+    border-color: #ff5733;
+    outline: none;
+}
+
+form button[type="submit"] {
+    background-color: #ff5733;
+    color: white;
+    padding: 0.8rem;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button[type="submit"]:hover {
+    background-color: #c44d26;
+}
+
+/* Payment Section */
+.payment-section {
+    background-image: url('charith1.jpg'); /* Background for Payment Section */
+    background-size: cover;
+    background-position: center;
+    color: rgb(180, 237, 25);
+    text-align: center;
+    padding: 5rem 2rem;
+    min-height: 100vh;
+}
+
+.payment-section form input[type="month"],
+.payment-section form input[type="password"] {
+    width: 100%;
+}
+
+.payment-section form label {
+    text-align: left;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+    header nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .plan, .class-item, .trainer {
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    form {
+        padding: 1.5rem;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+}

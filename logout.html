@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout | Gym Management System</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Background Image and Logout Section */
+        .logout-section {
+            background-image: url('cha.jpg'); /* Replace with your image path */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .logout-section h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .logout-section p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Button Styling */
+        .cta-btn, .back-btn {
+            background-color: #ff5722;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            transition: background-color 0.3s ease;
+            margin: 0.5rem;
+            display: inline-block;
+        }
+
+        .cta-btn:hover, .back-btn:hover {
+            background-color: #e64a19;
+        }
+
+        .back-btn {
+            background-color: #2196f3;
+        }
+
+        .back-btn:hover {
+            background-color: #1976d2;
+        }
+
+        /* Navigation Bar */
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 1rem;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        header nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        header nav ul li {
+            margin: 0 1rem;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        header nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #333;
+            color: white;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="user details.html">User-details</a></li>
+                <li><a href="membership.html">Membership</a></li>
+                <li><a href="classes.html">Classes</a></li>
+                <li><a href="trainers.html">Trainers</a></li>
+                <li><a href="payment.html">Payment</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about -us.html">About Us</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="logout.html">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="logout-section">
+        <h1>You have been logged out</h1>
+        <p>Thank you for visiting our gym. We hope to see you again soon!</p>
+        <a href="login.html" class="cta-btn">Login Again</a>
+        <a href="javascript:history.back()" class="back-btn">Back</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Gym Management System. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="scripts.js" defer></script>
+    <style>
+        /* Additional styles for the back button */
+        .back-button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+            display: block;
+            margin: 20px auto;
+            width: 150px;
+            font-size: 1rem;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="user details.html">User-details</a></li>
+                <li><a href="membership.html">Membership</a></li>
+                <li><a href="classes.html">Classes</a></li>
+                <li><a href="trainers.html">Trainers</a></li>
+                <li><a href="payment.html">Payment</a></li> <!-- Added Payment link -->
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about -us.html">About Us</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="logout.html">Logout</a></li> <!-- Login link after logging out -->
+            </ul>
+        </nav>
+    </header>
+    <section class="contact-us">
+        <a href="javascript:history.back()" class="back-button">Back</a>
+        <h1>Contact Us</h1>
+        <form id="contact-form" action="#" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" placeholder="Your message" required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+</body>
+</html>

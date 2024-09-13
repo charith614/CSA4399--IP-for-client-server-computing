@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Feedback</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('ni.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        nav {
+            background-color: rgba(0, 0, 0, 0.8);
+            width: 100%;
+            padding: 10px 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-list li {
+            margin: 0 10px;
+        }
+
+        .nav-list a {
+            color: #fcf7f7;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .nav-list a:hover {
+            text-decoration: underline;
+        }
+
+        .feedback-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            width: 400px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .back-button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            display: block;
+            margin: 20px auto 0;
+            width: 150px;
+            font-size: 1rem;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            border: none;
+            padding: 12px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        .feedback-history {
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+
+        .feedback-entry {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            position: relative;
+        }
+
+        .feedback-entry p {
+            margin: 5px 0;
+        }
+
+        .delete-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .delete-button:hover {
+            background-color: #c82333;
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <ul class="nav-list">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="user details.html">User Details</a></li>
+            <li><a href="membership.html">Membership</a></li>
+            <li><a href="classes.html">Classes</a></li>
+            <li><a href="trainers.html">Trainers</a></li>
+            <li><a href="payment.html">Payment</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="about -us.html">About Us</a></li>
+            <li><a href="feedback.html">Feedback</a></li>
+            <li><a href="logout.html">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="feedback-container">
+        <h2>Feedback Form</h2>
+        <form id="feedbackForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="feedback">Feedback:</label>
+            <textarea id="feedback" name="feedback" rows="5" required></textarea>
+
+            <input type="submit" value="Submit Feedback">
+        </form>
+        <div class="feedback-history">
+            <h3>Feedback History</h3>
+            <div id="feedbackHistory"></div>
+        </div>
+        <a href="javascript:history.back()" class="back-button">Back</a>
+    </div>
+
+    <script>
+        // Load feedback history on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const feedbackHistory = JSON.parse(localStorage.getItem('feedbackHistory')) || [];
+            const feedbackHistoryContainer = document.getElementById('feedbackHistory');
+
+            feedbackHistory.forEach((feedback, index) => {
+                const feedbackDiv = document.createElement('div');
+                feedbackDiv.classList.add('feedback-entry');
+                feedbackDiv.innerHTML = `
+                    <p><strong>Name:</strong> ${feedback.name}</p>
+                    <p><strong>Email:</strong> ${feedback.email}</p>
+                    <p><strong>Feedback:</strong> ${feedback.feedback}</p>
+                    <button class="delete-button" data-index="${index}">Delete</button>
+                `;
+                feedbackHistoryContainer.appendChild(feedbackDiv);
+            });
+        });
+
+        document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const feedback = document.getElementById('feedback').value;
+
+            const feedbackEntry = { name, email, feedback };
+
+            // Retrieve existing feedback from localStorage
+            const feedbackHistory = JSON.parse(localStorage.getItem('feedbackHistory')) || [];
+            feedbackHistory.push(feedbackEntry);
+
+            // Save updated feedback history to localStorage
+            localStorage.setItem('feedbackHistory', JSON.stringify(feedbackHistory));
+
+            // Optionally, display the new feedback immediately
+            const feedbackHistoryContainer = document.getElementById('feedbackHistory');
+            const feedbackDiv = document.createElement('div');
+            feedbackDiv.classList.add('feedback-entry');
+            feedbackDiv.innerHTML = `
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Feedback:</strong> ${feedback}</p>
+                <button class="delete-button">Delete</button>
+            `;
+            feedbackHistoryContainer.appendChild(feedbackDiv);
+
+            alert('Feedback Submitted!');
+
+            setTimeout(function() {
+                window.location.href = 'home.html'; // Replace 'home.html' with your actual home page URL
+            }, 2000); // 2000 milliseconds = 2 seconds
+
+            // Optionally, clear the form after submission
+            this.reset();
+        });
+
+        // Event delegation for delete buttons
+        document.getElementById('feedbackHistory').addEventListener('click', function(event) {
+            if (event.target.classList.contains('delete-button')) {
+                const index = event.target.getAttribute('data-index');
+
+                // Retrieve existing feedback from localStorage
+                const feedbackHistory = JSON.parse(localStorage.getItem('feedbackHistory')) || [];
+
+                // Remove feedback entry
+                feedbackHistory.splice(index, 1);
+
+                // Save updated feedback history to localStorage
+                localStorage.setItem('feedbackHistory', JSON.stringify(feedbackHistory));
+
+                // Refresh feedback history
+                location.reload();
+            }
+        });
+    </script>
+</body>
+</html>
